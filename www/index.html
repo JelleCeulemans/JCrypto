@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width"/>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"/>
+    <title>JCrypto</title>
+    <style>
+      .spa {
+        display: none;
+      }
+      #tabInformatie {
+        display: block;
+      }
+
+      h3 span, h5 span {
+        font-size: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed navbar -->
+    <div class="navbar-fixed">
+      <nav class="orange">
+        <div class="nav-wrapper container">
+          <a href="#!" class="brand-logo center">JCrypto</a>
+          <a href="#!"
+            data-target="nav-mobile"
+            class="sidenav-trigger show-on-large">
+            <i class="material-icons">menu</i>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <!-- Fixed sideNav -->
+    <ul id="nav-mobile" class="sidenav">
+      <li>
+        <a href="#!" data-show="tabInformatie"
+          ><i class="material-icons">info</i>Informatie</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a href="#!" data-show="tabCrypto"
+          ><i class="material-icons">monetization_on</i>Cryptomunten</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a href="#!" data-show="tabWallet"
+          ><i class="material-icons">account_balance</i>Portomonnee</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a href="#!" data-show="tabInstellingen"
+          ><i class="material-icons">settings</i>Instellingen</a>
+      </li>
+    </ul>
+    <!-- Grid -->
+    <div class="container">
+      <div class="row spa" id="tabInformatie">
+        <div class="col s12">
+          <h4><i class="material-icons">info</i>Informatie</h4>
+          <h6>Hieronder kan u informatie terug vinden over deze applicatie:</h6>
+          <ul class="collapsible">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">monetization_on</i>Cryptomunten
+              </div>
+              <div class="collapsible-body">
+                <span>In dit gedeelte worden de meest recentste prijzen opgehaald van de
+                  cryptomunten, alsook de stijging of daling voor het laatste
+                  uur, dag en week. De cryptomunten die hier getoond worden
+                  kunnen ingesteld worden naar eigen voorkeur bij de tab 'Instellingen'.</span>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">account_balance</i>Portemonnee
+              </div>
+              <div class="collapsible-body">
+                <span>Hier kan u voor de 6 cryptomunten met het hoogste marktaandeel ingeven hoeveel u er heeft en hoeveel u ze betaald heeft,
+                onze app berekend wat de huidige waarde is van uw munten en hoeveel winst of verlies u maakt.</span>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">settings</i>Instellingen
+              </div>
+              <div class="collapsible-body">
+                <span>Hier kan u instellen welke voorkeur u heeft voor het weergeven van de cryptomunten, hoeveel u er wilt weergeven
+                  en of u wel of niet graag meldingen ontvangt als u verlies maakt met uw cryptomunten.</span>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">assignment_ind</i>Gegevens
+                ontwikkelaar
+              </div>
+              <div class="collapsible-body">
+                <span>
+                  <div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th>Naam:</th>
+                          <td>Jelle Ceulemans</td>
+                        </tr>
+                        <tr>
+                          <th>E-mailadres</th>
+                          <td><a href="mailto:info@jelleceulemans.be">info@jelleceulemans.be</a></td>
+                        </tr>
+                        <tr>
+                          <th>Contacteren:</th>
+                          <td><a href="tel:+32491898500" class="btn-floating btn-small waves-effect waves-light orange"><i class="material-icons circle">phone</i></a>&nbsp;<a href="sms:+32491898500" class="btn-floating btn-small waves-effect waves-light orange"><i class="material-icons">message</i></a>&nbsp;&nbsp;&nbsp;+32491898500</td>
+                        </tr>
+                        <tr>
+                          <th>Website:</th>
+                          <td><a id="inAppBrowser" href="#">jelleceulemans.be</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row spa" id="tabCrypto">
+        <div class="col s12">
+          <h4><i class="material-icons">monetization_on</i>Cryptomunten</h4>
+          <div id="ladenCrypto">
+            <h6 class="center-align">Laatste prijzen ophalen</h6>
+            <div class="progress"><div class="indeterminate"></div></div>
+          </div>
+
+          <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light blue-grey" id="renewCrypto"><i class="material-icons">autorenew</i></a>
+          </div>
+          <div id="munten"></div>
+          <h6 id="datum"></h6>
+        </div>
+      </div>
+      <div class="row spa" id="tabWallet">
+        <div class="col s12">
+          <h4><i class="material-icons">account_balance</i>Portomonnee</h4>
+          <div id="ladenWallet">
+            <h6 class="center-align">Laatste prijzen ophalen</h6>
+            <div class="progress"><div class="indeterminate"></div></div>
+          </div>
+          <div class="fixed-action-btn">
+            <a class="btn-floating btn-large waves-effect waves-light blue-grey" id="renewWallet"><i class="material-icons">autorenew</i></a>
+          </div>
+          <div id="wallet"></div>
+          <h6 id="datumWallet"></h6>
+        </div>
+      </div>
+
+      <div class="row spa" id="tabInstellingen">
+        <div class="col s12">
+          <h4><i class="material-icons">settings</i>Instellingen</h4>
+
+          <!--<div id="meldingen">
+            <div class="input-field col s12">
+              <select id="afgelopen">
+                <option value="1">Afgelopen uur</option>
+                <option value="2">Afgelopen dag</option>
+                <option value="3" selected>Afgelopen week</option>
+              </select>
+              <label>Melding</label>
+            </div>
+
+            <div class="input-field col s12 row">
+              <input id="percentage" type="number" value="20" />
+              <label for="percentage">Percentage melding</label>
+            </div>
+          </div>-->
+          <div class="input-field col s12">
+            <select id="sorteren">
+              <option value="market_cap" selected>Marktaandeel</option>
+              <option value="price&sort_dir=desc">Duurste</option>
+              <option value="price&sort_dir=asc">Goedkoopste</option>
+              <option value="percent_change_1h">Grootste stijging afgelopen uur</option>
+              <option value="percent_change_24h">Grootste stijging afgelopen dag</option>
+              <option value="percent_change_7d">Grootste stijging afgelopen week</option>
+            </select>
+            <label>Cryptomunten sorteren op</label>
+          </div>
+          <div class="input-field col s12">
+            <select id="aantal">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6" selected>6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select>
+            <label>Aantal cryptomunten weergeven</label>
+          </div>
+          <div class="col s12 row">
+            <label>
+              <input type="checkbox" class="filled-in" id="check" />
+              <span>Geen meldingen</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/crypto.js"></script>
+    <script src="js/wallet.js"></script>
+
+    <!-- JavaScript defer: https://www.w3schools.com/tags/att_script_defer.asp -->
+    <script defer src="js/app.js"></script>
+    <!-- eigen script -->
+  </body>
+</html>
